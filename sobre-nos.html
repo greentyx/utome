@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre Nós — UTOME</title>
+  <meta name="description" content="Conheça a história da UTOME e de Alejandro Thalyson — fundador e idealizador de tecnologia inclusiva para pessoas com TEA." />
+  <link rel="icon" type="image/png" href="../assets/favicon/logotipo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/variables.css" />
+  <link rel="stylesheet" href="../styles/animations.css" />
+  <link rel="stylesheet" href="../styles/global.css" />
+  <link rel="stylesheet" href="../styles/responsive.css" />
+
+  <style>
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+      padding: 20px 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--color-gray-4);
+    }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav__logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em;
+    }
+    .nav__logo-mark {
+      width: 32px; height: 32px; border-radius: 8px; overflow: hidden;
+      background: var(--color-black); display: flex; align-items: center; justify-content: center;
+    }
+    .nav__logo-mark img { width: 100%; height: 100%; object-fit: cover; }
+    .nav__back {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: var(--text-sm); color: var(--color-gray-2); transition: color 0.2s;
+    }
+    .nav__back:hover { color: var(--color-black); }
+
+    /* HERO */
+    .about-hero {
+      padding: 130px 0 80px;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-gray-4);
+    }
+    .about-hero__title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 400; letter-spacing: -0.03em; line-height: 1.08;
+      max-width: 700px; margin-bottom: var(--space-5);
+    }
+    .about-hero__title em { font-style: normal; color: var(--color-orange); }
+    .about-hero__sub {
+      font-size: var(--text-md); color: var(--color-gray-2); max-width: 540px;
+      line-height: 1.65; font-weight: 300;
+    }
+
+    /* FOUNDER */
+    .founder-section { padding: var(--space-10) 0; background: var(--color-cream); }
+    .founder-grid {
+      display: grid; grid-template-columns: 380px 1fr; gap: var(--space-10); align-items: start;
+    }
+    .founder-card {
+      background: var(--color-white); border: 1px solid var(--color-gray-4);
+      border-radius: var(--radius-lg); overflow: hidden;
+      position: sticky; top: 100px;
+    }
+    .founder-card__visual {
+      background: var(--color-black); aspect-ratio: 4/5;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .founder-card__visual-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 80%, rgba(255,79,24,0.2) 0%, transparent 60%);
+    }
+    .founder-initials {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: rgba(255,79,24,0.15); border: 1px solid rgba(255,79,24,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; font-weight: 500; color: var(--color-white);
+      position: relative; z-index: 1; letter-spacing: -0.02em;
+    }
+    .founder-card__info { padding: var(--space-5) var(--space-6); }
+    .founder-name { font-size: var(--text-xl); font-weight: 500; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .founder-role { font-size: var(--text-sm); color: var(--color-orange); font-weight: 500; margin-bottom: var(--space-4); }
+    .founder-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .ftag {
+      font-size: var(--text-xs); color: var(--color-gray-1); background: var(--color-cream);
+      border: 1px solid var(--color-gray-4); border-radius: var(--radius-full);
+      padding: 4px 10px; font-weight: 500;
+    }
+
+    /* Story content */
+    .story-content { display: flex; flex-direction: column; gap: var(--space-8); }
+    .story-block {}
+    .story-block__label {
+      font-size: var(--text-xs); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-orange); margin-bottom: var(--space-3);
+    }
+    .story-block__title {
+      font-size: var(--text-2xl); font-weight: 500; letter-spacing: -0.02em;
+      line-height: 1.2; margin-bottom: var(--space-4);
+    }
+    .story-block__text {
+      font-size: var(--text-base); color: var(--color-gray-1); line-height: 1.75; font-weight: 300;
+    }
+    .story-block__text + .story-block__text { margin-top: var(--space-4); }
+    .story-block__divider { width: 40px; height: 2px; background: var(--color-orange); border-radius: 2px; margin: var(--space-6) 0; }
+
+    /* MISSION GRID */
+    .mission-section { padding: var(--space-10) 0; background: var(--color-white); }
+    .mission-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); margin-top: var(--space-8); }
+    .mission-card {
+      border: 1px solid var(--color-gray-4); border-radius: var(--radius-lg); padding: var(--space-6);
+      transition: border-color var(--duration) var(--ease);
+    }
+    .mission-card:hover { border-color: var(--color-gray-3); }
+    .mission-num {
+      font-size: var(--text-3xl); font-weight: 300; color: var(--color-orange);
+      letter-spacing: -0.04em; line-height: 1; margin-bottom: var(--space-3);
+    }
+    .mission-title { font-size: var(--text-base); font-weight: 500; margin-bottom: var(--space-2); }
+    .mission-desc { font-size: var(--text-sm); color: var(--color-gray-2); line-height: 1.6; }
+
+    /* MANIFESTO STRIP */
+    .manifesto-strip {
+      background: var(--color-black); padding: var(--space-9) 0;
+    }
+    .manifesto-strip__quote {
+      font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 300;
+      letter-spacing: -0.03em; line-height: 1.25; color: var(--color-white);
+      max-width: 720px;
+    }
+    .manifesto-strip__quote em { font-style: normal; color: var(--color-orange); }
+    .manifesto-strip__author {
+      margin-top: var(--space-6); display: inline-flex; align-items: center; gap: var(--space-3);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-full);
+      padding: var(--space-3) var(--space-5);
+    }
+    .author-avatar {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--color-orange);
+      display: flex; align-items: center; justify-content: center;
+      font-size: var(--text-xs); font-weight: 600; color: var(--color-white);
+    }
+    .author-name { font-size: var(--text-sm); color: var(--color-white); font-weight: 500; }
+    .author-role { font-size: var(--text-xs); color: rgba(255,255,255,0.35); }
+
+    /* VALUES */
+    .values-section { padding: var(--space-10) 0; background: var(--color-cream); }
+    .values-list-full { margin-top: var(--space-8); display: flex; flex-direction: column; gap: var(--space-4); }
+    .value-full {
+      display: grid; grid-template-columns: 40px 1fr;
+      gap: var(--space-5); align-items: start;
+      background: var(--color-white); border: 1px solid var(--color-gray-4);
+      border-radius: var(--radius-lg); padding: var(--space-5) var(--space-6);
+      transition: border-color var(--duration) var(--ease);
+    }
+    .value-full:hover { border-color: var(--color-gray-3); }
+    .value-num { font-size: var(--text-xl); font-weight: 300; color: var(--color-orange); letter-spacing: -0.02em; line-height: 1; padding-top: 2px; }
+    .value-full__title { font-size: var(--text-base); font-weight: 500; margin-bottom: 4px; }
+    .value-full__desc { font-size: var(--text-sm); color: var(--color-gray-2); line-height: 1.65; }
+
+    /* CTA */
+    .cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-7); }
+
+    /* FOOTER */
+    .page-footer { background: var(--color-black); padding: var(--space-6) 0; }
+    .page-footer__inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4); }
+    .page-footer__brand { display: flex; align-items: center; gap: 10px; font-size: var(--text-sm); font-weight: 500; color: var(--color-white); }
+    .page-footer__brand-mark { width: 26px; height: 26px; border-radius: 6px; overflow: hidden; background: rgba(255,255,255,0.1); }
+    .page-footer__brand-mark img { width: 100%; height: 100%; object-fit: cover; }
+    .page-footer__copy { font-size: var(--text-xs); color: rgba(255,255,255,0.25); }
+
+    @media (max-width: 860px) {
+      .founder-grid { grid-template-columns: 1fr; }
+      .founder-card { position: static; max-width: 380px; }
+      .mission-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 580px) {
+      .mission-grid { grid-template-columns: 1fr; }
+      .page-footer__inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <div class="nav__logo-mark">
+          <img src="../assets/favicon/logotipo.png" alt="" aria-hidden="true" />
+        </div>
+        UTOME
+      </a>
+      <a href="../index.html" class="nav__back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="19,12 5,12"/><polyline points="12,19 5,12 12,5"/></svg>
+        Voltar ao site
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="about-hero">
+  <div class="container">
+    <div class="reveal">
+      <span class="label label--orange">Sobre Nós</span>
+      <h1 class="about-hero__title">
+        A história de quem<br/>acredita que tecnologia<br/>pode <em>compreender.</em>
+      </h1>
+      <p class="about-hero__sub">
+        A UTOME nasceu de uma convicção simples: que toda criança, todo adulto, merece ferramentas pensadas especificamente para a forma como eles percebem o mundo.
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- FOUNDER -->
+<section class="founder-section">
+  <div class="container">
+    <div class="founder-grid">
+
+      <!-- Card -->
+      <div class="founder-card reveal">
+        <div class="founder-card__visual">
+          <div class="founder-card__visual-bg"></div>
+          <div class="founder-initials">AT</div>
+        </div>
+        <div class="founder-card__info">
+          <div class="founder-name">Alejandro Thalyson</div>
+          <div class="founder-role">Fundador & Idealizador · UTOME</div>
+          <div class="founder-tags">
+            <span class="ftag">Tecnologia Inclusiva</span>
+            <span class="ftag">Design para TEA</span>
+            <span class="ftag">Hardware & IoT</span>
+            <span class="ftag">Impacto Social</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Story -->
+      <div class="story-content">
+
+        <div class="story-block reveal">
+          <div class="story-block__label">A origem</div>
+          <h2 class="story-block__title">Por que a UTOME existe.</h2>
+          <p class="story-block__text">
+            A UTOME surgiu de uma observação persistente: a tecnologia avança em velocidade impressionante, mas raramente com as pessoas com TEA em mente. Os produtos existentes são adaptações — não criações. São interfaces que pedem que o usuário se molde a elas, não o contrário.
+          </p>
+          <p class="story-block__text">
+            Alejandro Thalyson fundou a UTOME com uma premissa diferente: construir do zero, com empatia como ponto de partida, não como acabamento. Cada decisão — de hardware, de interface, de material — começa pela pergunta <em>"como isso afeta quem tem TEA?"</em>
+          </p>
+          <div class="story-block__divider"></div>
+        </div>
+
+        <div class="story-block reveal">
+          <div class="story-block__label">O fundador</div>
+          <h2 class="story-block__title">Alejandro Thalyson.</h2>
+          <p class="story-block__text">
+            Alejandro é um jovem desenvolvedor e maker apaixonado pela interseção entre tecnologia e humanidade. Desde cedo, desenvolveu interesse por eletrônica, programação e design — e percebeu que essas ferramentas tinham potencial real de transformação social quando aplicadas com intenção.
+          </p>
+          <p class="story-block__text">
+            Ao pesquisar o cotidiano de famílias com crianças com Transtorno do Espectro Autista, Alejandro identificou lacunas gritantes: falta de dispositivos pensados para comunicação alternativa, ausência de ferramentas de monitoramento acessíveis financeiramente, e a solidão de cuidadores que não têm suporte tecnológico adequado.
+          </p>
+          <p class="story-block__text">
+            Dessa inquietação nasceu a UTOME — com dois projetos concretos em desenvolvimento: o <strong>UTOME Zero</strong>, um robô companheiro que auxilia na comunicação e rotinas, e a <strong>Pulseira A1</strong>, um wearable de monitoramento preventivo de sobrecarga sensorial.
+          </p>
+          <div class="story-block__divider"></div>
+        </div>
+
+        <div class="story-block reveal">
+          <div class="story-block__label">O presente</div>
+          <h2 class="story-block__title">Onde estamos agora.</h2>
+          <p class="story-block__text">
+            A UTOME é uma startup em fase inicial — honesta sobre isso. Os projetos estão em desenvolvimento ativo. Ainda há muito a construir, testar e aprender. Mas a direção é clara, o compromisso é sério, e cada passo é dado com cuidado.
+          </p>
+          <p class="story-block__text">
+            Acreditamos que startups sociais precisam de transparência. Por isso, este site existe: para mostrar o processo, convidar parceiros e apoiadores, e construir junto com a comunidade que mais precisa dessas soluções.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION NUMBERS -->
+<section class="mission-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">Nossa Missão em números</span>
+      <h2 class="section__title">O que move a UTOME.</h2>
+    </div>
+    <div class="mission-grid">
+      <div class="mission-card reveal">
+        <div class="mission-num">2</div>
+        <div class="mission-title">Projetos em desenvolvimento</div>
+        <div class="mission-desc">UTOME Zero e Pulseira A1 — ambos focados exclusivamente em pessoas com TEA.</div>
+      </div>
+      <div class="mission-card reveal reveal-d1">
+        <div class="mission-num">0</div>
+        <div class="mission-title">Desvio de recursos</div>
+        <div class="mission-desc">Todo valor recebido via doação vai diretamente para compra de materiais. Sem exceções.</div>
+      </div>
+      <div class="mission-card reveal reveal-d2">
+        <div class="mission-num">∞</div>
+        <div class="mission-title">Compromisso com inclusão</div>
+        <div class="mission-desc">A acessibilidade não é uma fase do produto — ela é a fundação de tudo que construímos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO STRIP -->
+<div class="manifesto-strip">
+  <div class="container">
+    <div class="reveal">
+      <p class="manifesto-strip__quote">
+        "Tecnologia não deve apenas <em>funcionar.</em> Ela deve <em>compreender</em> — e para isso, ela precisa ser feita por quem se importa."
+      </p>
+      <div class="manifesto-strip__author">
+        <div class="author-avatar">AT</div>
+        <div>
+          <div class="author-name">Alejandro Thalyson</div>
+          <div class="author-role">Fundador, UTOME</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">O que acreditamos</span>
+      <h2 class="section__title">Nossos valores.</h2>
+      <p class="section__sub">Não são palavras em um slide. São os critérios que usamos para tomar cada decisão de produto.</p>
+    </div>
+    <div class="values-list-full">
+      <div class="value-full reveal">
+        <div class="value-num">01</div>
+        <div>
+          <div class="value-full__title">Acolhimento como ponto de partida</div>
+          <div class="value-full__desc">Toda sessão de design começa com empatia. Não "como fazemos isso funcionar?" mas "como isso faz a pessoa se sentir?" São perguntas diferentes — e produzem produtos muito diferentes.</div>
+        </div>
+      </div>
+      <div class="value-full reveal reveal-d1">
+        <div class="value-num">02</div>
+        <div>
+          <div class="value-full__title">Simplicidade intencional</div>
+          <div class="value-full__desc">Para pessoas com TEA, interfaces complexas não são um inconveniente — podem ser uma barreira real. Cada elemento que adicionamos precisa justificar sua presença. O que não agrega, sai.</div>
+        </div>
+      </div>
+      <div class="value-full reveal reveal-d2">
+        <div class="value-num">03</div>
+        <div>
+          <div class="value-full__title">Transparência total</div>
+          <div class="value-full__desc">Somos honestos sobre o estágio em que estamos. Os produtos ainda estão sendo desenvolvidos. Falamos sobre isso abertamente — e usamos essa honestidade para construir confiança real com apoiadores e parceiros.</div>
+        </div>
+      </div>
+      <div class="value-full reveal reveal-d3">
+        <div class="value-num">04</div>
+        <div>
+          <div class="value-full__title">Impacto antes do lucro</div>
+          <div class="value-full__desc">A métrica de sucesso da UTOME não é receita — é melhoria real na vida de pessoas com TEA. Negócios sustentáveis são necessários, mas nunca a razão de existir.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-row reveal">
+      <a href="doacao.html" class="btn btn--primary">Apoiar com uma doação</a>
+      <a href="parcerias.html" class="btn btn--outline">Ser parceiro</a>
+    </div>
+  </div>
+</section>
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="page-footer__inner">
+      <div class="page-footer__brand">
+        <div class="page-footer__brand-mark">
+          <img src="../assets/favicon/logotipo.png" alt="" />
+        </div>
+        UTOME
+      </div>
+      <p class="page-footer__copy">&copy; 2025 UTOME · Fundada por Alejandro Thalyson</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var reveals = document.querySelectorAll('.reveal');
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  reveals.forEach(function(el) { obs.observe(el); });
+</script>
+</body>
+</html>
