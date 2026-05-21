@@ -1,0 +1,60 @@
+/* ─── UTOME · Design Tokens ─────────────────────────────────────────────── */
+
+:root {
+  /* Brand */
+  --color-orange:     #ff4f18;
+  --color-orange-dim: #d93f10;
+  --color-orange-bg:  rgba(255, 79, 24, 0.08);
+
+  /* Neutrals */
+  --color-black:   #1a1a1a;
+  --color-gray-1:  #4a4a4a;
+  --color-gray-2:  #7a7a7a;
+  --color-gray-3:  #c8c8c8;
+  --color-gray-4:  #f0eeeb;
+  --color-cream:   #f8f6f3;
+  --color-white:   #ffffff;
+
+  /* Typography */
+  --font-body:    'DM Sans', sans-serif;
+  --font-display: 'DM Sans', sans-serif;
+
+  --text-xs:   0.72rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-md:   1.125rem;
+  --text-lg:   1.375rem;
+  --text-xl:   1.75rem;
+  --text-2xl:  2.25rem;
+  --text-3xl:  3rem;
+  --text-4xl:  4rem;
+  --text-hero: clamp(3rem, 7vw, 5.5rem);
+
+  /* Spacing scale */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.07);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.09);
+
+  /* Motion */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration: 0.4s;
+}
